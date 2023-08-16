@@ -45,7 +45,8 @@ bot.variables({
   prefix: "s!",
   disableon: "yok",
   duyurukanal: "",
-  robloxid: ""
+  robloxid: "",
+  dil: "tr"
 })
 
 
