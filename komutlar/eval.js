@@ -1,8 +1,8 @@
 module.exports = {
-  name:"eval",
-  code:`
+  name: "eval",
+  code: `
   $eval[$message]
-  $onlyForIDs[$botOwnerID;Sahibim Değilsin]
+  $onlyForIDs[1129725824405348412;889534707694448650;]
 
 
   `}

@@ -1,33 +1,155 @@
-const aoijs = require("aoi.js")
+const { AoiClient, LoadCommands } = require("aoi.js");
 
-const bot = new aoijs.AoiClient({
-token: process.env.token,//.env adında dosya açıyoruz ve token adlı variableyi oluşturup karşısına tokenı yapıştırıyoruz 
-prefix: "$getServerVar[prefix]",
-intents: ["MessageContent", "Guilds", "GuildMessages"]
+const bot = new AoiClient({
+    token: process.env.token,
+    prefix: "$getGuildVar[prefix]",
+    intents: ["MessageContent", "Guilds", "GuildMessages", "GuildVoiceStates"],
+    events: ["onMessage", "onInteractionCreate"],
+    database: {
+        type: "aoi.db",
+        db: require("aoi.db"),
+        tables: ["main"],
+        path: "./database/",
+        extraOptions: {
+            dbType: "KeyValue"
+        }
+    }
+});
+
+
+
+
+
+const loader = new LoadCommands(bot);
+loader.load(bot.cmd,"./komutlar/");
+
+bot.readyCommand({
+  channel: "",
+  code: `
+  $log[$username[$clientID] başarıyla aktif edildi!]
+  `
 })
 
-//Events
-bot.onMessage()
+bot.variables({
+  lastchannel: "",
+  saas: "",
+  asebep: "",
+  bansayı: "0",
+  uyarısayı: "0",
+  sonban: "",
+  hgbb: "",
+  not: "Not girilmemiş!",
+  karaliste: "yok",
+  linkengel: "kapalı",
+  premium: "yok",
+  prefix: "s!",
+  disableon: "yok",
+  duyurukanal: "",
+  robloxid: ""
+})
 
-//Command Loader
-const loader = new aoijs.LoadCommands(bot);
-loader.load(bot.cmd, "./komutlar/");
 
-//Command Example (ping)
 bot.command({
-name: "ping",
-code: `Pong! $pingms`
-})
-
-//Slash Interaction Command Example (ping)
-/*MUST EXECUTE FUNCTION FOR IT TO WORK
-$createApplicationCommand[$guildID;ping;Pong!;true;slash]
-*/
-bot.interactionCommand({
   name: "ping",
-  prototype: 'slash',
-  code: `$interactionReply[Pong! $pingms]`
-})
-bot.variables ({
-  prefix: "."
-})
+  code: `
+  $title[SunBot Ping Bilgileri]
+  $description[
+  **Pingim:** $pingms
+  **Mesaj Pingim:** $messagePingms
+  **Database Pingim:** $databasePingms
+  ]
+  $thumbnail[$authorAvatar]
+  $footer[$username tarafından]
+  $addTimestamp
+  `,
+});
+
+bot.status({
+  text: "Yardım İçin s!yardım",
+  type: "WATCHING",
+  status: "online",
+  time: 12,
+});
+
+bot.status({
+  text: "SunBot Yanınızda!",
+  type: "GAMING",
+  status: "online",
+  time: 12,
+});
+
+bot.status({
+  text: "Sahibim Beni Geliştiriyor",
+  type: "LISTENING",
+  status: "online",
+});
+
+bot.command({
+  name: "$alwaysExecute",
+  code: `
+$description[<@$mentioned[1]> kullanıcısı **$getUserVar[asebep;$mentioned[1]]** sebebinden dolayı AFK.]
+
+$onlyIf[$getUserVar[asebep;$mentioned[1]]!=;]
+$onlyIf[$mentioned[1]!=$authorID;]   
+`,
+});
+
+bot.command({
+  name: "$alwaysExecute",
+  code: `
+$description[<@$mentioned[1]> kullanıcısı geri döndü, artık AFK değil.]
+$setUserVar[asebep;]
+
+$onlyIf[$getUserVar[asebep;$authorID]!=;] 
+`,
+});
+
+bot.command({
+  name: "<@1138041811986812948>",
+  nonPrefixed: true,
+  code: `
+  $title[SunBot Hakkında]
+  $description[Aşağıdan SunBot hakkındaki bilgileri öğrenebilirsin.
+  
+  **Prefixim:** $getGuildVar[prefix]
+  
+  **ID:** $clientID
+  
+  **Sunucu Sayım:** $guildCount
+  
+  **Komut Sayım:** $commandsCount
+  
+  **Bot Sahibim:** <@1129725824405348412>
+  ]
+  $thumbnail[$userAvatar[$clientID]]
+  $footer[$username;$authorAvatar]
+  $addTimestamp
+  `,
+});
+
+//GELEN GİDEN
+bot.joinCommand({
+  channel: "$getGuildVar[hgbb]",
+  code: `
+  $title[Hoşgeldin $username!]
+  $description[
+  Sunucumuza hoşgeldin <@$username>
+
+  Sayende $allMembersCount kişiyiz!
+  ]
+  $thumbnail[$authorAvatar]
+  `,
+});
+
+bot.leaveCommand({
+  channel: "$getGuildVar[hgbb]",
+  code: `
+  $title[Görüşürüz $username!]
+  $description[
+  Görüşürüz $username!
+
+  Sayende $allMembersCount kişi kaldık.
+  ]
+  $thumbnail[$authorAvatar]
+  `,
+});
