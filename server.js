@@ -65,25 +65,14 @@ bot.command({
 });
 
 bot.status({
-  text: "Yardım İçin s!yardım",
+  text: "Yardım almak için s!yardım yazabilirsin 😎",
   type: "WATCHING",
-  status: "online",
-  time: 12,
-});
+  status: "dnd"
+})
 
-bot.status({
-  text: "SunBot Yanınızda!",
-  type: "GAMING",
-  status: "online",
-  time: 12,
-});
-
-bot.status({
-  text: "Sahibim Beni Geliştiriyor",
-  type: "LISTENING",
-  status: "online",
-});
-
+bot.statud({
+  text: ""
+})
 bot.command({
   name: "$alwaysExecute",
   code: `
@@ -93,8 +82,7 @@ $onlyIf[$getUserVar[asebep;$mentioned[1]]!=;]
 $onlyIf[$mentioned[1]!=$authorID;]   
 `,
 });
-
-bot.command({
+ bot.command({
   name: "$alwaysExecute",
   code: `
 $description[<@$mentioned[1]> kullanıcısı geri döndü, artık AFK değil.]
