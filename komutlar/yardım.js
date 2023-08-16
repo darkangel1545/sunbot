@@ -1,8 +1,9 @@
 module.exports = [{
   name: "yardım",
+  $if: "old",
   aliases: ["help"],
   code: `
-
+$if[$getGuildVar[dil]==tr]
   $title[SunBot Yardım]
   $description[
 SunBot' un yardım menüsüne hoşgeldiniz. Aşağıdan kategorilere bakabilirsiniz.
@@ -32,6 +33,39 @@ SunBot' un yardım menüsüne hoşgeldiniz. Aşağıdan kategorilere bakabilirsi
   $addButton[1;Güncellemeler;success;guncellemeler;no;]
   $addButton[1;Bot Hakkında;success;bothakkinda;no;]
   $onlyIf[$getGlobalUserVar[karaliste]!=var;Kara listedesin! Şuanda botun komutlarını kullanamazsın.]
+  $elseif[$getGuildVar[dil]==eng]
+    $title[SunBot Help]
+  $description[
+Welcome to SunBot's help menu. You can view the categories below.
+
+**Command Count =** $commandsCount
+
+**My Ping =** $pingms
+  
+  <a:blue_arrow_heart:1141037090667237447> **$getGuildVar[prefix]eğlence**
+   Lists entertainment commands.
+
+  <a:blue_arrow_heart:1141037090667237447> **$getGuildVar[prefix]yetkili**
+   Lists authorized commands.
+
+  <a:blue_arrow_heart:1141037090667237447> **$getGuildVar[prefix]kullanıcı**
+   Lists user commands.
+
+   <a:blue_arrow_heart:1141037090667237447> **$getGuildVar[prefix]geliştirici**
+  Lists the developer commands.
+
+
+   
+  ]
+  $image[https://media.discordapp.net/attachments/1135525919444979765/1136754710863433930/standard_3.gif]
+  $thumbnail[$authorAvatar]
+  $footer[$username tarafından]
+  $addTimestamp
+  $addButton[1;Güncellemeler;success;guncellemeler;no;]
+  $addButton[1;Bot Hakkında;success;bothakkinda;no;]
+  $onlyIf[$getGlobalUserVar[karaliste]!=var;Kara listedesin! Şuanda botun komutlarını kullanamazsın.]
+  $endelseif
+  $endif
   `
 },{
   type: "interaction",
@@ -61,6 +95,7 @@ $interactionReply[;{newEmbed:{title:SunBot Güncellemeleri}{description:
 
 **Bazı Sorunlar Giderildi.**
 }{thumbnail:$userAvatar[$clientID]}{footer:$username:$authorAvatar}{timestamp:ms}};;;everyone;true]
+
 `
 },
                 {
