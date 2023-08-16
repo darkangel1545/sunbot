@@ -61,9 +61,9 @@ Welcome to SunBot's help menu. You can view the categories below.
   $thumbnail[$authorAvatar]
   $footer[$username tarafından]
   $addTimestamp
-  $addButton[1;Güncellemeler;success;guncellemeler;no;]
-  $addButton[1;Bot Hakkında;success;bothakkinda;no;]
-  $onlyIf[$getGlobalUserVar[karaliste]!=var;Kara listedesin! Şuanda botun komutlarını kullanamazsın.]
+  $addButton[1;Updates;success;guncellemeler;no;]
+  $addButton[1;About Bot;success;bothakkinda;no;]
+  $onlyIf[$getGlobalUserVar[karaliste]!=var;You are blacklisted! You cannot use the bot's commands at this time.]
   $endelseif
   $endif
   `
@@ -95,7 +95,6 @@ $interactionReply[;{newEmbed:{title:SunBot Güncellemeleri}{description:
 
 **Bazı Sorunlar Giderildi.**
 }{thumbnail:$userAvatar[$clientID]}{footer:$username:$authorAvatar}{timestamp:ms}};;;everyone;true]
-
 `
 },
                 {

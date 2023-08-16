@@ -16,7 +16,9 @@ module.exports = {
   $setGuildVar[dil;eng]
   $endif
   
-  $onlyIf[$message!=;**Lütfen değiştirilecek dili girin!**]
+  $if[$message==]
+  **Lütfen değiştirilecek dili girin!**
+  $endif
   $onlyPerms[administrator;Bu komutu kullanabilmek için **Yönetici** yetkisine sahip olmalısın!]
   `
 }
