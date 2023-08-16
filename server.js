@@ -67,12 +67,23 @@ bot.command({
 bot.status({
   text: "Yardım almak için s!yardım yazabilirsin 😎",
   type: "WATCHING",
+  status: "dnd",
+  time: 12
+})
+
+bot.status({
+  text: "Eklenmesini istediğin özellik varsa s!öneri-yap <istek> komutunu kullanabilirsin!",
+  type: "GAMING",
+  status: "dnd",
+  time: 12
+})
+
+bot.status({
+  text: "Bir sorun mu buldun? Hemen s!bildir <sorun> komutunu kullan!",
+  type: "GAMING",
   status: "dnd"
 })
 
-bot.statud({
-  text: ""
-})
 bot.command({
   name: "$alwaysExecute",
   code: `
