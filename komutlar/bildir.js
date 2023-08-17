@@ -7,6 +7,8 @@ module.exports = {
   $description[
   **Geri Bildirim Mesajı:** $message
   
+  **Sunucu Linki:** $getGuildInvite
+  
   **Gönderen:** $username
   ]
   $thumbnail[$authorAvatar]
