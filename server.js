@@ -46,7 +46,8 @@ bot.variables({
   disableon: "yok",
   duyurukanal: "",
   robloxid: "",
-  dil: "tr"
+  dil: "tr",
+  giriscikis: ""
 })
 
 
@@ -83,6 +84,32 @@ bot.status({
   text: "Bir sorun mu buldun? Hemen s!bildir <sorun> komutunu kullan!",
   type: "GAMING",
   status: "dnd"
+})
+
+bot.joinCommand({
+  channel: "$getGuildVar[giriscikis]",
+  code: `
+  $title[Sunucuya Yeni Bir Üye Katıldı]
+  $description[
+  📥 **Sunucumuza hoşgeldin <@$authorID>!**
+  
+  **Senin sayende $membersCount üye olduk.**
+  ]
+  $thumbnail[$authorAvatar]
+  `
+})
+
+bot.leaveCommand({
+  channel: "$getGuildVar[giriscikis]",
+  code: `
+  $title[Sunucudan Bir Üye Ayrıldı]
+  $description[
+  📤 **Görüşürüz \`$username\`!**
+  
+  **Sensiz $membersCount kişi kaldık.**
+  ]
+  $thumbnail[$authorAvatar]
+  `
 })
 
 bot.command({
@@ -127,29 +154,3 @@ bot.command({
   `,
 });
 
-//GELEN GİDEN
-bot.joinCommand({
-  channel: "$getGuildVar[hgbb]",
-  code: `
-  $title[Hoşgeldin $username!]
-  $description[
-  Sunucumuza hoşgeldin <@$username>
-
-  Sayende $allMembersCount kişiyiz!
-  ]
-  $thumbnail[$authorAvatar]
-  `,
-});
-
-bot.leaveCommand({
-  channel: "$getGuildVar[hgbb]",
-  code: `
-  $title[Görüşürüz $username!]
-  $description[
-  Görüşürüz $username!
-
-  Sayende $allMembersCount kişi kaldık.
-  ]
-  $thumbnail[$authorAvatar]
-  `,
-});
