@@ -22,5 +22,6 @@ module.exports = {
   $setGuildVar[giriscikis;]
   $endelseif
   $endif
+  $onlyIf[$message!=;**Yanlış Kullanım! Lütfen \`$getGuildVar[prefix]giriş-çıkış aç\` veya \`s!giriş-çıkış kapat\` komutlarından birini kullanın.**]
   `
 }
