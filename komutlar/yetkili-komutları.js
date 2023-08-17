@@ -42,6 +42,10 @@ module.exports = {
   <a:blue_arrow_heart:1141037090667237447> **$getGuildVar[prefix]duyuru-yap**
   Duyuru kanalında yazdığınız duyuruyu yapar.
   **Kullanım:** $getGuildVar[prefix]duyuru-yap <duyuru>
+  
+  <a:blue_arrow_heart:1141037090667237447> **$getGuildVar[prefix]sunucu-panel**
+  Sunucu panelini ayarlamanızı sağlar.
+  **Kullanım:** $getGuildVar[prefix]sunucu-panel <kur veya sıfırla>
   ]
   $thumbnail[$userAvatar[$authorID]]
   $footer[$username tarafından]

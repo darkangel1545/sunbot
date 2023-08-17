@@ -11,9 +11,13 @@ module.exports = {
     $title[Sunucu Panel Kuruldu]
     $description[**\`$guildName[$guildID]\` isimli sunucuda sunucu paneli başarıyla kuruldu!**]
     $thumbnail[$guildIcon[$guildID]]
-    $elseif[$message==]
-    **Bir işlem belirtmelisin! Örneğin \`$getGuildVar[prefix]sunucu-panel kur\` yazabilirsin.**
+    $elseif[$message==sıfırla]
+    $deleteChannel[$channelID[Üye Sayısı: $membersCount]]
+    $deleteChannel[$channelID[Bot Sayısı: $guildBotCount[$guildID]]]
+    $deleteChannel[$channelID[Metin Kanalı Sayısı: $channelCount[$guildID;Text]]]
+    $deleteChannel[$channelID[Ses Kanalı Sayısı: $channelCount[$guildID;Voice]]]
     $endelseif
   $endif
+  $onlyIf[$message!=;**Bir işlem belirtmelisin! Örneğin \`$getGuildVar[prefix]sunucu-panel kur\` yazabilirsin.**]
   `
 }
